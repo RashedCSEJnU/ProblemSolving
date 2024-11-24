@@ -2,7 +2,7 @@
 using namespace std;
 #define int long long
 
-// printbinary
+// printbinary number
 void printBinary(int n)
 {
     if (n == 0)
