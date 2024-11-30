@@ -39,11 +39,9 @@ int main()
             int i;
             cin >> i;
 
-            func(i, -1), func(i - 1, -1);
-
+            func(i, -1), func(i - 1, -1); // remove
             s[i] = (s[i] == 'R' ? 'L' : 'R');
-
-            func(i, 1), func(i - 1, 1);
+            func(i, 1), func(i - 1, 1); // add
 
             cout << (!badBlock ? "YES\n" : "NO\n");
         }
