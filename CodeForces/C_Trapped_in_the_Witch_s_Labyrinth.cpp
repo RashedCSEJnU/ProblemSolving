@@ -70,7 +70,8 @@ int32_t main()
             q.pop();
             int x = it.first, y = it.second;
 
-            for (vector<int> dir : vector<vector<int>>{{-1, 0, 'D'}, {1, 0, 'U'}, {0, -1, 'R'}, {0, 1, 'L'}})
+            for (vector<int> dir : vector<vector<int>>{
+                     {-1, 0, 'D'}, {1, 0, 'U'}, {0, -1, 'R'}, {0, 1, 'L'}})
             {
                 int dx = dir[0], dy = dir[1];
                 char dch = dir[2];
