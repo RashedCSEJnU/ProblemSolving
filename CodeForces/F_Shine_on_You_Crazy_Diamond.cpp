@@ -55,9 +55,62 @@ const int mod = 998244353;
 const int MOD = 1000000007;
 const int INF = LLONG_MAX;
 
+const int N = 1e6 + 100;
+vector<int> spf(N + 10, 1);
+void sieve()
+{
+    spf[0] = 0;
+    for (int i = 2; i <= N; i++)
+    {
+        if (spf[i] == 1)
+        {
+            for (int j = i; j <= N; j += i)
+            {
+                if (spf[j] == 1)
+                    spf[j] = i;
+            }
+        }
+    }
+}
+
 void solution()
 {
-    cout << "Hello Boss\n";
+    sieve();
+    int n;
+    cin >> n;
+    vector<int> v(n);
+    for (int i = 0; i < n; i++)
+        cin >> v[i];
+
+    map<int, int> mp;
+    for (int i = 0; i < n; i++)
+    {
+        int x = spf[v[i]];
+        if (x != 1)
+            mp[x]++;
+    }
+    vector<pair<int, int>> vp; // cnt ,value
+    for (auto val : mp)
+        vp.push_back({val.second, val.first});
+
+    sort(vp.rbegin(), vp.rend());
+
+    if (vp.size() == 0)
+    {
+        cout << n << endl;
+        cout << 2 << ' ' << 3 << endl;
+    }
+    else if (vp.size() == 1)
+    {
+        cout << n - vp[0].first << endl;
+        cout << vp[0].second << ' ' << 2 << endl;
+    }
+    else
+    {
+        int cnt = n - vp[0].first - vp[1].first;
+        cout << cnt << endl;
+        cout << vp[0].second << ' ' << vp[1].second << endl;
+    }
 }
 
 int32_t main()
