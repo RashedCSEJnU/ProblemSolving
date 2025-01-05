@@ -1,34 +1,20 @@
 #include <bits/stdc++.h>
 using namespace std;
-class Solution
+#define int long long
+
+int32_t main()
 {
-public:
-    int maxProfit(vector<int> &v)
+    ios_base::sync_with_stdio(0), cin.tie(0);
+    int t = 1;
+    cin >> t;
+    while (t--)
     {
-        int n = v.size();
-        vector<vector<int>> dp(n + 1, vector<int>(2, 0));
-        int afterBuy = 0, afterSell = 0, curBuy = 0, curSell = 0;
-        for (int i = n - 1; i >= 0; i--)
-        {
-            curBuy = max(afterBuy, -v[i] + afterSell);
-            curSell = max(afterSell, v[i] + afterBuy);
-
-            afterBuy = curBuy;
-            afterSell = curSell;
-        }
-        return afterBuy;
+        int a, b, c;
+        cin >> a >> b >> c;
+        int x = a ^ b;
+        int y = b ^ c;
+        int z = a ^ c;
+        cout << x + y + z << endl;
     }
-};
-int main()
-{
-    ios_base::sync_with_stdio(false), cin.tie(nullptr);
-    int n;
-    cin >> n;
-    vector<int> v(n);
-    for (int &i : v)
-        cin >> i;
-    Solution ob;
-    cout << ob.maxProfit(v) << '\n';
-
     return 0;
 }
