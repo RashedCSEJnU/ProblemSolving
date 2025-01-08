@@ -1,32 +1,24 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define ll long long
-#define yes cout << "YES\n"
-#define no cout << "NO\n"
-int main()
+#define int long long
+int32_t main()
 {
-    ios_base::sync_with_stdio(false), cin.tie(NULL), cout.tie(NULL);
+    ios_base::sync_with_stdio(0), cin.tie(0);
     int t = 1;
     cin >> t;
     while (t--)
     {
-        ll x, n, ans = 0;
+        int x, n;
         cin >> x >> n;
-
-        n = 0;
-        for (int i = 1; i <= 50; i++)
+        int rem = n % 4;
+        for (int i = n - rem + 1; i <= n; i++)
         {
-            if (n & 1)
-            {
-                n += i;
-            }
+            if (x & 1)
+                x += i;
             else
-            {
-                n -= i;
-            }
-            cout << n << ' ';
+                x -= i;
         }
-        cout << '\n';
+        cout << x << endl;
     }
     return 0;
 }
