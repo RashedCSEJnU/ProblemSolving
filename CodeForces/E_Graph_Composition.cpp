@@ -16,21 +16,18 @@ public:
             parent[i] = i;
         }
     }
-
     int Find(int v)
     {
         if (v == parent[v])
             return v;
         return parent[v] = Find(parent[v]); // path compression
     }
-
     void Union(int a, int b)
     {
         a = Find(a);
         b = Find(b);
         if (a == b)
             return;
-
         // Union by size
         if (Size[a] < Size[b])
             swap(a, b);
@@ -53,10 +50,8 @@ int main()
     {
         int n, m1, m2;
         cin >> n >> m1 >> m2;
-
         DSU dsuF(n), dsuG(n);
         set<pair<int, int>> graphF, graphG;
-
         for (int i = 0; i < m1; ++i)
         {
             int u, v;
@@ -64,7 +59,6 @@ int main()
             if (u > v)
                 swap(u, v);
             graphF.insert({u, v});
-            dsuF.Union(u, v);
         }
 
         for (int i = 0; i < m2; ++i)
@@ -74,30 +68,29 @@ int main()
             if (u > v)
                 swap(u, v);
             graphG.insert({u, v});
-            dsuG.Union(u, v);
         }
 
-        int operations = 0;
-
-        // Add missing edges to F to match connectivity of G
+        int operations = 0, cnt1 = 0, cnt2 = 0;
         for (auto [u, v] : graphG)
-        {
-            if (!dsuF.connected(u, v) || graphF.find({u, v}) == graphF.end())
-            {
-                dsuF.Union(u, v);
-                operations++;
-            }
-        }
+            dsuG.Union(u, v);
 
-        // Remove extra edges from F that are not in G
         for (auto [u, v] : graphF)
         {
-            if (!dsuG.connected(u, v))
-            {
+            if (dsuG.connected(u, v))
+                dsuF.Union(u, v);
+            else
                 operations++;
-            }
         }
-        cout << operations << '\n';
+
+        for (int i = 1; i <= n; ++i)
+        {
+            if (dsuG.Find(i) == i)
+                cnt1++;
+            if (dsuF.Find(i) == i)
+                cnt2++;
+        }
+        operations += abs(cnt1 - cnt2);
+        cout << operations << endl;
     }
     return 0;
 }
