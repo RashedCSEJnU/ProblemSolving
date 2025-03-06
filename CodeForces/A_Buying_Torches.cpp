@@ -9,8 +9,11 @@ int32_t main()
     cin >> t;
     while (t--)
     {
-        int n;
-        cin >> n;
+        int x, y, k;
+        cin >> x >> y >> k;
+        int need = k - 1 + (k * y);
+        int ans = (need + x - 2) / (x - 1);
+        cout << ans + k << '\n';
     }
     return 0;
 }
