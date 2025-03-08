@@ -17,6 +17,7 @@ Welcome to my problem-solving repository. Here, you will find solutions to vario
 You can find my profiles on various platforms here:
 
 - [Codeforces](https://codeforces.com/profile/Rashedunnabi)
+- [HackerRank](https://www.hackerrank.com/profile/rashedunnabi)
 - [CodeChef](https://www.codechef.com/users/rashedunnabi2)
 - [LeetCode](https://leetcode.com/u/Rashedunnabi/)
 - [CSES](https://cses.fi/user/137386)
